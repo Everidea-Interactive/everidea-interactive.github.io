@@ -1,1 +1,0 @@
-# everidea-interactive.github.io
