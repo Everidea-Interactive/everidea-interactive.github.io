@@ -3377,9 +3377,6 @@ Module["STATIC_BUMP"] = STATIC_BUMP;
 var tempDoublePtr = STATICTOP;
 STATICTOP += 16;
 assert(tempDoublePtr % 8 == 0);
-function _GameOver(userName, score) {
- window.dispatchReactUnityEvent("GameOver", Pointer_stringify(userName), score);
-}
 function _JS_Cursor_SetImage(ptr, length) {
  var binary = "";
  for (var i = 0; i < length; i++) binary += String.fromCharCode(HEAPU8[ptr + i]);
@@ -3875,8 +3872,8 @@ function _JS_WebRequest_SetResponseHandler(request, arg, onresponse) {
 function _JS_WebRequest_SetTimeout(request, timeout) {
  wr.requestInstances[request].timeout = timeout;
 }
-function _PlayerIdentity(name, alreadyChooseCharacter, character) {
- console.log(name + "|" + alreadyChooseCharacter + "|" + character);
+function _PlayerIdentity(userName, alreadyChooseCharacter, score) {
+ window.dispatchReactUnityEvent("GameOver", Pointer_stringify(userName), alreadyChooseCharacter, score);
 }
 var webSocketInstances = [];
 function _SocketClose(socketInstance) {
@@ -20362,7 +20359,6 @@ Module.asmLibraryArg = {
  "invoke_vjii": invoke_vjii,
  "invoke_vjiiii": invoke_vjiiii,
  "invoke_vjji": invoke_vjji,
- "_GameOver": _GameOver,
  "_JS_Cursor_SetImage": _JS_Cursor_SetImage,
  "_JS_Cursor_SetShow": _JS_Cursor_SetShow,
  "_JS_Eval_ClearInterval": _JS_Eval_ClearInterval,
